@@ -1,0 +1,24 @@
+{%- assign ymal_product_count = product.metafields.ymal | size -%}
+{%- if ymal_product_count > 0 -%}
+  <div class="more-product d-block clearfix">
+    <div class="container">
+      <div class="row no-gutters">
+        <div class="col-12 col-sm-12 text-center"><h3>{{'products.ymal.title' | t }}</h3></div>
+        <div class="col-12 col-sm-12 col-md-8 m-auto">
+          <div class="row">
+            {%- for ymal in product.metafields.ymal -%}
+            {%- assign yproduct = all_products[ymal.last] -%}
+            {%- if yproduct.handle == current_product.handle -%}
+            {%- assign current_product_found = true -%}
+            {%- else -%}
+            <div class="col-6 col-sm-6 col-md-6">
+              {%- include 'product-card-grid', product: yproduct, max_height: 600 -%}
+            </div>
+            {%- endif -%}
+            {%- endfor -%}
+          </div>
+        </div>
+      </div>
+      </div>
+  </div>
+{%- endif -%}
